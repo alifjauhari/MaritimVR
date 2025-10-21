@@ -1,0 +1,109 @@
+fileFormatVersion: 2
+guid: 8f1ab1047c0c9cb47b42c79fe6abbf78
+timeCreated: 1550675603
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: UnderWater_MeshPart0
+    100004: UnderWater_MeshPart1
+    100006: Camera
+    100008: Camera_Interest
+    100010: Camera_Root
+    100012: light
+    100014: UnderWater:UnderWater
+    100016: UnderWater:UnderWater_ncl1_1
+    400000: //RootNode
+    400002: UnderWater_MeshPart0
+    400004: UnderWater_MeshPart1
+    400006: Camera
+    400008: Camera_Interest
+    400010: Camera_Root
+    400012: light
+    400014: UnderWater:UnderWater
+    400016: UnderWater:UnderWater_ncl1_1
+    2300000: UnderWater_MeshPart0
+    2300002: UnderWater_MeshPart1
+    2300004: //RootNode
+    2300006: UnderWater:UnderWater_ncl1_1
+    3300000: UnderWater_MeshPart0
+    3300002: UnderWater_MeshPart1
+    3300004: //RootNode
+    3300006: UnderWater:UnderWater_ncl1_1
+    4300000: UnderWater_MeshPart0
+    4300002: UnderWater_MeshPart1
+    4300004: UnderWater
+    4300006: UnderWater:UnderWater_ncl1_1
+    4300008: UnderWaterPlane
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 10
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 1
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
