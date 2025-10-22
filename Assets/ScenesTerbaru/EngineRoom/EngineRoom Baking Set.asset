@@ -55,11 +55,11 @@ MonoBehaviour:
         hasOnlyBiggerBricks: 0
     - position: {x: -1, y: 0, z: -1}
       index: 3
-      probeCount: 2496
+      probeCount: 3520
       minSubdiv: 0
       indexChunkCount: 91
       shChunkCount: 1
-      bricksCount: 39
+      bricksCount: 55
       indirectionEntryInfo:
       - positionInBricks: {x: -27, y: 0, z: -27}
         minSubdiv: 0
@@ -69,11 +69,11 @@ MonoBehaviour:
         hasOnlyBiggerBricks: 0
     - position: {x: -1, y: 0, z: 0}
       index: 12
-      probeCount: 384
+      probeCount: 448
       minSubdiv: 0
       indexChunkCount: 91
       shChunkCount: 1
-      bricksCount: 6
+      bricksCount: 7
       indirectionEntryInfo:
       - positionInBricks: {x: -27, y: 0, z: 0}
         minSubdiv: 0
@@ -97,11 +97,11 @@ MonoBehaviour:
         hasOnlyBiggerBricks: 0
     - position: {x: 0, y: 0, z: -1}
       index: 4
-      probeCount: 3456
+      probeCount: 5632
       minSubdiv: 0
       indexChunkCount: 91
       shChunkCount: 1
-      bricksCount: 54
+      bricksCount: 88
       indirectionEntryInfo:
       - positionInBricks: {x: 0, y: 0, z: -27}
         minSubdiv: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
     m_Keys:
     - Default
     m_Values:
-    - sceneHash: 2038792081
+    - sceneHash: 2113822180
       cellDataAsset:
         m_AssetGUID: ea43eea678e362642a136f028f3bbaef
         m_StreamableAssetPath: APVStreamingAssets\093c1a201cd5362439e0ef33ba16987e\ea43eea678e362642a136f028f3bbaef.bytes
@@ -221,14 +221,14 @@ MonoBehaviour:
       - offset: 0
         elementCount: 12
       - offset: 192
-        elementCount: 39
-      - offset: 816
-        elementCount: 6
-      - offset: 912
+        elementCount: 55
+      - offset: 1072
         elementCount: 7
-      - offset: 1024
-        elementCount: 54
-      - offset: 1888
+      - offset: 1184
+        elementCount: 7
+      - offset: 1296
+        elementCount: 88
+      - offset: 2704
         elementCount: 10
     m_Asset: {fileID: 4900000, guid: 4cbecf2040a22b6448f33ad42d1afd72, type: 3}
   cellSupportDataAsset:
