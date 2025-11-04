@@ -5,6 +5,20 @@ TagManager:
   serializedVersion: 3
   tags:
   - CinemachineTarget
+  - QDSUITooltip
+  - QDSUIToggleButton
+  - QDSUIToggleBorderlessButton
+  - QDSUIBackplateGradient
+  - QDSUIIcon
+  - QDSUISection
+  - QDSUITextSecondaryColor
+  - QDSUISecondaryButton
+  - QDSUIAccentColor
+  - QDSUIToggleSwitch
+  - QDSUISharedThemeColor
+  - QDSUIBorderlessButton
+  - SamplesInfoPanel
+  - Tops
   layers:
   - Default
   - TransparentFX

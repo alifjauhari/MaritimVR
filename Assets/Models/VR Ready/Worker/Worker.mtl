@@ -1,0 +1,68 @@
+# Exported from Fuse 1.3.0
+
+newmtl Eyewear
+illum 4
+Kd 1.00 1.00 1.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 1.00 1.00 1.00
+map_Kd Worker_Eyewear_diffuse.png
+bump Worker_Eyewear_normal.png
+map_Ns Worker_Eyewear_gloss.png
+
+newmtl Shoes
+illum 4
+Kd 1.00 1.00 1.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 1.00 1.00 1.00
+map_Kd Worker_Shoes_diffuse.png
+bump Worker_Shoes_normal.png
+map_Ns Worker_Shoes_gloss.png
+
+newmtl Bottom
+illum 4
+Kd 1.00 1.00 1.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 1.00 1.00 1.00
+map_Kd Worker_Bottom_diffuse.png
+bump Worker_Bottom_normal.png
+map_Ns Worker_Bottom_gloss.png
+
+newmtl Hat
+illum 4
+Kd 1.00 1.00 1.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 1.00 1.00 1.00
+map_Kd Worker_Hat_diffuse.png
+bump Worker_Hat_normal.png
+map_Ns Worker_Hat_gloss.png
+
+newmtl Body
+illum 4
+Kd 1.00 1.00 1.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 1.00 1.00 1.00
+map_Kd Worker_Body_diffuse.png
+bump Worker_Body_normal.png
+map_Ns Worker_Body_gloss.png
+
+newmtl Top
+illum 4
+Kd 1.00 1.00 1.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 1.00 1.00 1.00
+map_Kd Worker_Top_diffuse.png
+bump Worker_Top_normal.png
+map_Ns Worker_Top_gloss.png
+

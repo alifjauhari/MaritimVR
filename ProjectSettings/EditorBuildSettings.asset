@@ -8,16 +8,16 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/The_Viking_Village.unity
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/ScenesTerbaru/EngineRoom.unity
     guid: 0888e9f4c9bf0a94a8ba2f49ef4aa1c9
-  - enabled: 1
+  - enabled: 0
     path: Assets/ScenesTerbaru/Harbor Maritim.unity
     guid: ad23308c8095a394ca36a2bd5f0deadf
-  - enabled: 1
+  - enabled: 0
     path: Assets/ScenesTerbaru/EngineRoomSmaller.unity
     guid: fe64787134a96a14f9d2e52aef9b4d21
-  - enabled: 1
+  - enabled: 0
     path: Assets/ScenesTerbaru/InfinitySea.unity
     guid: 1888a744f3c470c4abd13eef20ebf027
   - enabled: 1
