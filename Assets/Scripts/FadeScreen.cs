@@ -1,14 +1,12 @@
-using System;
 using System.Collections;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
-
+using UnityEngine.SceneManagement;
 public class FadeScreen : MonoBehaviour
 {
     public enum SkyBoxType
     {
-        Space,
+        Space
     }
 
     public Material spaceSkyBox;
@@ -34,6 +32,18 @@ public class FadeScreen : MonoBehaviour
         }
     }
 
+    public void ChangeScene(string sceneName)
+    {
+        StartCoroutine(ChangeSceneRoutine(sceneName));
+    }
+
+    IEnumerator ChangeSceneRoutine(string sceneName)
+    {
+        SingleFadeOut();
+        yield return new WaitForSeconds(duration);
+        SceneManager.LoadScene(sceneName);
+    }
+
     public void FadeIn()
     {
         Fade(1, 0);
@@ -47,6 +57,32 @@ public class FadeScreen : MonoBehaviour
     public void Fade(float alphaIn, float alphaOut)
     {
         StartCoroutine(FadeRoutine(alphaIn, alphaOut));
+    }
+
+    private void SingleFadeOut()
+    {
+        StartCoroutine(SingleFadeOutRoutine(0, 1));
+    }
+
+    public IEnumerator SingleFadeOutRoutine(float alphaIn, float alphaOut)
+    {
+        gameObject.GetComponent<MeshRenderer>().enabled = true;
+
+        float timer = 0;
+        while (timer < duration)
+        {
+            Color newColor = fadeColor;
+            newColor.a = Mathf.Lerp(alphaIn, alphaOut, timer / duration);
+
+            renderer.material.SetColor("_Color", newColor);
+
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        Color newColor2 = fadeColor;
+        newColor2.a = alphaOut;
+        renderer.material.SetColor("_Color", newColor2);
     }
 
     public IEnumerator FadeRoutine(float alphaIn, float alphaOut)
