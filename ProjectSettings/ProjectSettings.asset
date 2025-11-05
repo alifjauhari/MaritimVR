@@ -143,6 +143,9 @@ PlayerSettings:
   bundleVersion: 1.1
   preloadedAssets:
   - {fileID: 11400000, guid: de08bed7548e4e6459d4cbac041bb4c8, type: 2}
+  - {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7, type: 2}
+  - {fileID: 1616953204887704295, guid: 3d83ef1fa32f7c3439af77e7dc55fd9d, type: 2}
+  - {fileID: 5662677550565859207, guid: d9484045855c47744ab05df76f9e6609, type: 2}
   metroInputSource: 1
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -558,6 +561,9 @@ PlayerSettings:
   - serializedVersion: 2
     m_BuildTarget: PS4
     m_EncodingQuality: 1
+  - serializedVersion: 2
+    m_BuildTarget: Android
+    m_EncodingQuality: 2
   m_BuildTargetGroupHDRCubemapEncodingQuality:
   - serializedVersion: 2
     m_BuildTarget: Standalone
@@ -567,6 +573,9 @@ PlayerSettings:
     m_EncodingQuality: 2
   - serializedVersion: 2
     m_BuildTarget: PS4
+    m_EncodingQuality: 2
+  - serializedVersion: 2
+    m_BuildTarget: Android
     m_EncodingQuality: 2
   m_BuildTargetGroupLightmapSettings: []
   m_BuildTargetGroupLoadStoreDebugModeSettings: []

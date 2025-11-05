@@ -24,6 +24,8 @@ EditorBuildSettings:
     path: Assets/Samples/Meta XR Movement SDK/78.0.0/Advanced Samples/Scenes/MovementISDKLocomotion.unity
     guid: f218e4b84bfc26549a67cf06a00d10cd
   m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7,
+      type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 3d83ef1fa32f7c3439af77e7dc55fd9d,
       type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: d9484045855c47744ab05df76f9e6609,
