@@ -14,12 +14,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ScenesTerbaru/Harbor Maritim.unity
     guid: ad23308c8095a394ca36a2bd5f0deadf
+  - enabled: 1
+    path: Assets/ScenesTerbaru/InfinitySea.unity
+    guid: 1888a744f3c470c4abd13eef20ebf027
+  - enabled: 1
+    path: Assets/ScenesTerbaru/LoungeRoom.unity
+    guid: 17ff640662567f84196d8828e240370a
   - enabled: 0
     path: Assets/ScenesTerbaru/EngineRoomSmaller.unity
     guid: fe64787134a96a14f9d2e52aef9b4d21
-  - enabled: 0
-    path: Assets/ScenesTerbaru/InfinitySea.unity
-    guid: 1888a744f3c470c4abd13eef20ebf027
   - enabled: 0
     path: Assets/Samples/Meta XR Movement SDK/78.0.0/Advanced Samples/Scenes/MovementISDKLocomotion.unity
     guid: f218e4b84bfc26549a67cf06a00d10cd

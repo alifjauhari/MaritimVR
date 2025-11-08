@@ -2262,6 +2262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTrigger: 0
+  isUsed: 0
   outfitCollider: {fileID: 221336287}
 --- !u!64 &70619424
 MeshCollider:
@@ -7629,6 +7630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTrigger: 0
+  isUsed: 0
   outfitCollider: {fileID: 1936415127}
 --- !u!64 &316853663
 MeshCollider:
@@ -15610,22 +15612,43 @@ MonoBehaviour:
   bottomWorker: {fileID: 221336286}
   bottomMaterial: {fileID: 2100000, guid: 05f0604d36f7f6c4ea57aef1d12b6e14, type: 2}
   bottomOutfit: {fileID: 70619423}
+  onBottomUsed:
+    m_PersistentCalls:
+      m_Calls: []
   topBasic: {fileID: 1803198998}
   topWorker: {fileID: 1483369916}
   topMaterial: {fileID: 2100000, guid: ab8d66949a495a749851ad9bfca94572, type: 2}
   topOutfit: {fileID: 2053962685}
+  onTopUsed:
+    m_PersistentCalls:
+      m_Calls: []
   shoesBasic: {fileID: 1335730777}
   shoesWorker: {fileID: 1936415126}
   shoesMaterial: {fileID: 2100000, guid: 3191d98c3b8e9284888616c0427532ce, type: 2}
   shoesOutfit: {fileID: 316853662}
+  onShoesUsed:
+    m_PersistentCalls:
+      m_Calls: []
   eyewearBasic: {fileID: 318094675}
   eyewearWorker: {fileID: 74058845}
   eyewearMaterial: {fileID: 2100000, guid: 23004afa2b637b8428d44aa6939804dd, type: 2}
   eyewearOutfit: {fileID: 894935175}
+  onEyewearUsed:
+    m_PersistentCalls:
+      m_Calls: []
   hatBasic: {fileID: 1166541363}
   hatWorker: {fileID: 1129220431}
   hatMaterial: {fileID: 2100000, guid: 8b294525e2905de40a0b74cf59342142, type: 2}
   hatOutfit: {fileID: 1701364412}
+  onHatUsed:
+    m_PersistentCalls:
+      m_Calls: []
+  onOutfitComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onTopAndBottom:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &710448717
 Transform:
   m_ObjectHideFlags: 0
@@ -18008,6 +18031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTrigger: 0
+  isUsed: 0
   outfitCollider: {fileID: 74058846}
 --- !u!64 &894935176
 MeshCollider:
@@ -32039,6 +32063,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTrigger: 0
+  isUsed: 0
   outfitCollider: {fileID: 1129220432}
 --- !u!64 &1701364413
 MeshCollider:
@@ -33216,27 +33241,27 @@ PrefabInstance:
     - target: {fileID: 767270841805771734, guid: cf5e00f95bbc102419b456b1674f47f7,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 767270841805771734, guid: cf5e00f95bbc102419b456b1674f47f7,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 767270841805771734, guid: cf5e00f95bbc102419b456b1674f47f7,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 604
       objectReference: {fileID: 0}
     - target: {fileID: 767270841805771734, guid: cf5e00f95bbc102419b456b1674f47f7,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 630
       objectReference: {fileID: 0}
     - target: {fileID: 767270841805771734, guid: cf5e00f95bbc102419b456b1674f47f7,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 863453077100364992, guid: cf5e00f95bbc102419b456b1674f47f7,
         type: 3}
@@ -33616,27 +33641,27 @@ PrefabInstance:
     - target: {fileID: 1533198726137253535, guid: cf5e00f95bbc102419b456b1674f47f7,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1533198726137253535, guid: cf5e00f95bbc102419b456b1674f47f7,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1533198726137253535, guid: cf5e00f95bbc102419b456b1674f47f7,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 56
       objectReference: {fileID: 0}
     - target: {fileID: 1533198726137253535, guid: cf5e00f95bbc102419b456b1674f47f7,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 960
       objectReference: {fileID: 0}
     - target: {fileID: 1533198726137253535, guid: cf5e00f95bbc102419b456b1674f47f7,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 1639216238442072562, guid: cf5e00f95bbc102419b456b1674f47f7,
         type: 3}
@@ -34026,22 +34051,22 @@ PrefabInstance:
     - target: {fileID: 2862323857828902579, guid: cf5e00f95bbc102419b456b1674f47f7,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2862323857828902579, guid: cf5e00f95bbc102419b456b1674f47f7,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2862323857828902579, guid: cf5e00f95bbc102419b456b1674f47f7,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 166.37
       objectReference: {fileID: 0}
     - target: {fileID: 2862323857828902579, guid: cf5e00f95bbc102419b456b1674f47f7,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2898261876537816732, guid: cf5e00f95bbc102419b456b1674f47f7,
         type: 3}
@@ -34801,22 +34826,22 @@ PrefabInstance:
     - target: {fileID: 5037834728308294907, guid: cf5e00f95bbc102419b456b1674f47f7,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5037834728308294907, guid: cf5e00f95bbc102419b456b1674f47f7,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5037834728308294907, guid: cf5e00f95bbc102419b456b1674f47f7,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 166.37
       objectReference: {fileID: 0}
     - target: {fileID: 5037834728308294907, guid: cf5e00f95bbc102419b456b1674f47f7,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 5069300515750011263, guid: cf5e00f95bbc102419b456b1674f47f7,
         type: 3}
@@ -36021,27 +36046,27 @@ PrefabInstance:
     - target: {fileID: 8441633460304011643, guid: cf5e00f95bbc102419b456b1674f47f7,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8441633460304011643, guid: cf5e00f95bbc102419b456b1674f47f7,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8441633460304011643, guid: cf5e00f95bbc102419b456b1674f47f7,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 340
       objectReference: {fileID: 0}
     - target: {fileID: 8441633460304011643, guid: cf5e00f95bbc102419b456b1674f47f7,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 158
       objectReference: {fileID: 0}
     - target: {fileID: 8441633460304011643, guid: cf5e00f95bbc102419b456b1674f47f7,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 8448144163902316200, guid: cf5e00f95bbc102419b456b1674f47f7,
         type: 3}
@@ -41140,6 +41165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTrigger: 0
+  isUsed: 0
   outfitCollider: {fileID: 1483369917}
 --- !u!64 &2053962686
 MeshCollider:

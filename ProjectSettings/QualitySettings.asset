@@ -22,7 +22,7 @@ QualitySettings:
     globalTextureMipmapLimit: 2
     textureMipmapLimitSettings: []
     anisotropicTextures: 0
-    antiAliasing: 0
+    antiAliasing: 4
     softParticles: 0
     softVegetation: 0
     realtimeReflectionProbes: 0
@@ -58,7 +58,8 @@ QualitySettings:
     terrainBillboardStart: 50
     terrainFadeLength: 5
     terrainMaxTrees: 50
-    excludedTargetPlatforms: []
+    excludedTargetPlatforms:
+    - Android
   - serializedVersion: 4
     name: Fast
     pixelLightCount: 0
@@ -111,7 +112,8 @@ QualitySettings:
     terrainBillboardStart: 50
     terrainFadeLength: 5
     terrainMaxTrees: 50
-    excludedTargetPlatforms: []
+    excludedTargetPlatforms:
+    - Android
   - serializedVersion: 4
     name: Simple
     pixelLightCount: 1
@@ -164,7 +166,8 @@ QualitySettings:
     terrainBillboardStart: 50
     terrainFadeLength: 5
     terrainMaxTrees: 50
-    excludedTargetPlatforms: []
+    excludedTargetPlatforms:
+    - Android
   - serializedVersion: 4
     name: Good
     pixelLightCount: 2
@@ -217,7 +220,8 @@ QualitySettings:
     terrainBillboardStart: 50
     terrainFadeLength: 5
     terrainMaxTrees: 50
-    excludedTargetPlatforms: []
+    excludedTargetPlatforms:
+    - Android
   - serializedVersion: 4
     name: Beautiful
     pixelLightCount: 3
@@ -270,7 +274,8 @@ QualitySettings:
     terrainBillboardStart: 50
     terrainFadeLength: 5
     terrainMaxTrees: 50
-    excludedTargetPlatforms: []
+    excludedTargetPlatforms:
+    - Android
   - serializedVersion: 4
     name: Fantastic
     pixelLightCount: 1
@@ -287,7 +292,7 @@ QualitySettings:
     globalTextureMipmapLimit: 0
     textureMipmapLimitSettings: []
     anisotropicTextures: 1
-    antiAliasing: 0
+    antiAliasing: 4
     softParticles: 1
     softVegetation: 1
     realtimeReflectionProbes: 0
@@ -326,7 +331,8 @@ QualitySettings:
     excludedTargetPlatforms: []
   m_TextureMipmapLimitGroupNames: []
   m_PerPlatformDefaultQuality:
-    Android: 0
+    Android: 5
+    Server: 0
     Standalone: 5
     WebGL: 0
     Windows Store Apps: 0
