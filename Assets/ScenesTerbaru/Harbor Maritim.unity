@@ -42255,6 +42255,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 216344021}
   m_Mesh: {fileID: 4300000, guid: d65ca9cd416b24674b3814c08b317d8a, type: 3}
+--- !u!114 &217290389 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 11400000, guid: d30be34a77f7ee64f9f11eca789a86b5,
+    type: 3}
+  m_PrefabInstance: {fileID: 376200413}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5564f499341508a43819ce17743cd92b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &217700848 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4161424337029068, guid: 381e25ca6338cc84cb97f6cc98988180,
@@ -72566,6 +72578,91 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.388244, y: 9.525398, z: 1.26}
   m_Center: {x: -0.30586925, y: 4.53714, z: 0}
+--- !u!1001 &376200413
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 100000, guid: d30be34a77f7ee64f9f11eca789a86b5, type: 3}
+      propertyPath: m_Name
+      value: Seagull Flock - Free Roam
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: d30be34a77f7ee64f9f11eca789a86b5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.9181175
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: d30be34a77f7ee64f9f11eca789a86b5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 37.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: d30be34a77f7ee64f9f11eca789a86b5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 202.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: d30be34a77f7ee64f9f11eca789a86b5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: d30be34a77f7ee64f9f11eca789a86b5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: d30be34a77f7ee64f9f11eca789a86b5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: d30be34a77f7ee64f9f11eca789a86b5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: d30be34a77f7ee64f9f11eca789a86b5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: d30be34a77f7ee64f9f11eca789a86b5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: d30be34a77f7ee64f9f11eca789a86b5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: d30be34a77f7ee64f9f11eca789a86b5, type: 3}
+      propertyPath: _childAmount
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: d30be34a77f7ee64f9f11eca789a86b5, type: 3}
+      propertyPath: _posBuffer.x
+      value: 3.9181175
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: d30be34a77f7ee64f9f11eca789a86b5, type: 3}
+      propertyPath: _posBuffer.y
+      value: 39.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: d30be34a77f7ee64f9f11eca789a86b5, type: 3}
+      propertyPath: _posBuffer.z
+      value: 202.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: d30be34a77f7ee64f9f11eca789a86b5, type: 3}
+      propertyPath: _spawnSphere
+      value: 88.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: d30be34a77f7ee64f9f11eca789a86b5, type: 3}
+      propertyPath: _spawnSphereDepth
+      value: 71.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: d30be34a77f7ee64f9f11eca789a86b5, type: 3}
+      propertyPath: _spawnSphereHeight
+      value: 20.05
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d30be34a77f7ee64f9f11eca789a86b5, type: 3}
 --- !u!1 &376369904
 GameObject:
   m_ObjectHideFlags: 0
@@ -225151,6 +225248,73 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1006048570}
   m_Mesh: {fileID: 4300008, guid: 5f643dd3063229e4380c16656cb6cb25, type: 3}
+--- !u!4 &1007771768
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008139288}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.9999983, z: 0, w: 0.0018830006}
+  m_LocalPosition: {x: 7.78, y: 18.306, z: 1.35}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1007771772}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1007771772
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008139292}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -12.6, y: -16.4, z: 145.42255}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1007771768}
+  - {fileID: 1298928769}
+  - {fileID: 1482960805}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1008139288
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1007771768}
+  - component: {fileID: 1018857912}
+  m_Layer: 0
+  m_Name: Landing Spot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1008139292
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1007771772}
+  - component: {fileID: 1018857916}
+  m_Layer: 0
+  m_Name: Seagull - Landing Spots
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1008245715
 GameObject:
   m_ObjectHideFlags: 0
@@ -226151,6 +226315,53 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 215222449}
   m_Mesh: {fileID: 4300000, guid: fa23ba21d03513f46b70227bb5a7dc67, type: 3}
+--- !u!114 &1018857912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008139288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a111c283075a545459dd71ed98b3fa53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  landingChild: {fileID: 0}
+  landing: 0
+  _controller: {fileID: 1018857916}
+  _thisT: {fileID: 1007771768}
+  _gotcha: 0
+--- !u!114 &1018857916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008139292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71f3c1fb4f1e13c43b7db4207a58c59d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _randomRotate: 1
+  _autoCatchDelay: {x: 10, y: 20}
+  _autoDismountDelay: {x: 10, y: 20}
+  _maxBirdDistance: 10
+  _minBirdDistance: 5
+  _takeClosest: 0
+  _flock: {fileID: 217290389}
+  _landOnStart: 1
+  _soarLand: 1
+  _onlyBirdsAbove: 1
+  _landingSpeedModifier: 0.5
+  _landingTurnSpeedModifier: 5
+  _featherPS: {fileID: 0}
+  _thisT: {fileID: 1007771772}
+  _activeLandingSpots: 0
+  _snapLandDistance: 0.1
+  _landedRotateSpeed: 0.01
+  _gizmoSize: 0.2
 --- !u!1 &1019100086
 GameObject:
   m_ObjectHideFlags: 0
@@ -298855,6 +299066,55 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &1298928768
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1298928769}
+  - component: {fileID: 1298928770}
+  m_Layer: 0
+  m_Name: Landing Spot (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1298928769
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298928768}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.9999983, z: 0, w: 0.0018830006}
+  m_LocalPosition: {x: 14.58, y: 18.306, z: -5.16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1007771772}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1298928770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298928768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a111c283075a545459dd71ed98b3fa53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  landingChild: {fileID: 0}
+  landing: 0
+  _controller: {fileID: 1018857916}
+  _thisT: {fileID: 1298928769}
+  _gotcha: 0
 --- !u!1 &1300051086
 GameObject:
   m_ObjectHideFlags: 0
@@ -339101,6 +339361,55 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1482718747}
   m_Mesh: {fileID: 4300002, guid: 1f6399aa9d830fb4180fd4fa78aa2138, type: 3}
+--- !u!1 &1482960804
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1482960805}
+  - component: {fileID: 1482960806}
+  m_Layer: 0
+  m_Name: Landing Spot (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1482960805
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482960804}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.9999983, z: 0, w: 0.0018830006}
+  m_LocalPosition: {x: 15.7, y: 18.306, z: 8.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1007771772}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1482960806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482960804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a111c283075a545459dd71ed98b3fa53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  landingChild: {fileID: 0}
+  landing: 0
+  _controller: {fileID: 1018857916}
+  _thisT: {fileID: 1482960805}
+  _gotcha: 0
 --- !u!1001 &1483046875
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -520755,3 +521064,5 @@ SceneRoots:
   - {fileID: 435654149}
   - {fileID: 514458846}
   - {fileID: 1197819575}
+  - {fileID: 376200413}
+  - {fileID: 1007771772}
