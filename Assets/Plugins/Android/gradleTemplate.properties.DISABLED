@@ -1,0 +1,4 @@
+unityStreamingAssets=**STREAMING_ASSETS**
+org.gradle.jvmargs=-Xmx8192m -Dfile.encoding=UTF-8
+android.useAndroidX=true
+android.enableJetifier=true

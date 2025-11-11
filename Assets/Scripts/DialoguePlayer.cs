@@ -14,10 +14,10 @@ public class DialoguePlayer : MonoBehaviour
         [TextArea(2, 6)]
         public string text;
 
-        [Tooltip("When this section starts (seconds from the clip's beginning).")]
+        [Tooltip("Section start time (seconds from beginning of this entry's clip).")]
         public float startTime;
 
-        [Tooltip("If <= 0, ends at the next section's start, or at clip.length for the last section.")]
+        [Tooltip("Display length. If <= 0, it lasts until the next section, or until entry end for the last section.")]
         public float duration;
 
         [Header("Events (optional)")]
@@ -31,13 +31,13 @@ public class DialoguePlayer : MonoBehaviour
         [Tooltip("Speaker shown in the name UI.")]
         public string speakerName;
 
-        [Tooltip("Optional: legacy single text (used only if Sections is empty).")]
+        [Tooltip("Used only if Sections is empty (becomes a single section at t=0).")]
         [TextArea(2, 6)] public string dialogueText;
 
-        [Tooltip("The single audio clip for this entry (can be one long clip).")]
+        [Tooltip("The audio clip for the whole entry. Will play straight through from t=0.")]
         public AudioClip audioClip;
 
-        [Tooltip("Timed sections inside the clip.")]
+        [Tooltip("Timed sections that change the text (do not trim/seek the audio).")]
         public Section[] sections;
 
         [Header("Entry Events")]
@@ -50,7 +50,7 @@ public class DialoguePlayer : MonoBehaviour
     [SerializeField] private TextMeshProUGUI playerNameText;
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private Button nextButton;
-    [SerializeField] private RectTransform layoutRoot;  // e.g., Textbox (with VerticalLayoutGroup)
+    [SerializeField] private RectTransform layoutRoot;  // parent with VerticalLayoutGroup (your Textbox)
 
     [Header("Global Events")]
     [SerializeField] private UnityEvent onEnd;
@@ -59,27 +59,30 @@ public class DialoguePlayer : MonoBehaviour
     [SerializeField] private DialogueEntry[] entries;
 
     [Header("Options")]
-    [Tooltip("If checked: starts automatically from the beginning on Start(). If unchecked: wait for Trigger().")]
+    [Tooltip("If checked, the dialogue starts from the beginning automatically on Start().")]
     public bool isFromStart = true;
 
     [Tooltip("Hide the panel when dialogue finishes.")]
     [SerializeField] private bool hidePanelOnEnd = true;
 
-    [Tooltip("Used when there is no audio and a section has no duration.")]
+    [Tooltip("Fallbacks when there is no audio.")]
     [SerializeField] private float defaultTextOnlyDuration = 3f;
 
     private AudioSource audioSource;
     private int entryIndex = 0;
-    private int sectionIndex = 0;
+    private int sectionIndex = 0;           // current section inside the entry (for events)
     private bool isRunning = false;
-    private Coroutine sectionRoutine;
+
+    private Coroutine entryFlow;            // drives section timing per entry
+    private float entryStartTime = 0f;      // Time.time when current entry started
+    private bool entryManuallySkipped = false;
 
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
 
         if (nextButton != null)
-            nextButton.onClick.AddListener(Next);
+            nextButton.onClick.AddListener(Next); // Next now skips to next ENTRY
 
         if (panel != null && hidePanelOnEnd)
             panel.SetActive(false);
@@ -91,11 +94,17 @@ public class DialoguePlayer : MonoBehaviour
         {
             entryIndex = 0;
             sectionIndex = 0;
-            Trigger();
+            StartCoroutine(DelayOnStart(2f));
         }
     }
 
-    /// Begins (or resumes) the dialogue flow.
+    IEnumerator DelayOnStart(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Trigger();
+    }
+
+    /// Begin (or resume) the dialogue.
     public void Trigger()
     {
         if (entries == null || entries.Length == 0)
@@ -109,125 +118,78 @@ public class DialoguePlayer : MonoBehaviour
         if (panel != null)
             panel.SetActive(true);
 
-        StartCoroutine(Co_RebuildLayoutNextFrame());
-        ShowCurrentSection();
+        StartEntry(entryIndex);
     }
 
-    /// Next button handler: go to next section; if none, next entry; if none, end.
+    /// Next button now SKIPS to NEXT ENTRY (ignores remaining sections).
     public void Next()
     {
         if (!isRunning) return;
 
-        // Complete current section event (if any)
-        var currentEntry = entries[entryIndex];
-        var secs = GetSections(currentEntry);
+        // Mark manual skip so the coroutine doesn't also auto-advance callbacks twice
+        entryManuallySkipped = true;
+
+        // Complete current section + entry events before skipping
+        var entry = entries[entryIndex];
+        var secs = GetSections(entry);
+
+        // section complete (if we already started one)
         if (sectionIndex >= 0 && sectionIndex < secs.Length)
             secs[sectionIndex].onSectionComplete?.Invoke();
 
-        sectionIndex++;
+        // entry complete
+        entry.onEntryComplete?.Invoke();
 
-        if (sectionIndex >= secs.Length)
-        {
-            // Entry complete
-            currentEntry.onEntryComplete?.Invoke();
-
-            entryIndex++;
-            sectionIndex = 0;
-
-            if (entryIndex >= entries.Length)
-            {
-                EndDialogue();
-                return;
-            }
-        }
-
-        ShowCurrentSection();
+        // jump to next entry
+        GoToNextEntry();
     }
 
-    /// Skip immediately to the next entry (completes current section + entry events).
-    public void SkipToNextEntry()
+    /// Skips the rest of the current entry and begins the next (public helper).
+    public void SkipToNextEntry() => Next();
+
+    // -------------------- Entry lifecycle --------------------
+
+    private void StartEntry(int index)
     {
-        if (!isRunning) return;
-
-        var currentEntry = entries[entryIndex];
-        var secs = GetSections(currentEntry);
-
-        // complete current section (if any)
-        if (sectionIndex >= 0 && sectionIndex < secs.Length)
-            secs[sectionIndex].onSectionComplete?.Invoke();
-
-        // complete current entry
-        currentEntry.onEntryComplete?.Invoke();
-
-        entryIndex++;
-        sectionIndex = 0;
-
-        if (entryIndex >= entries.Length)
+        if (index < 0 || index >= entries.Length)
         {
             EndDialogue();
             return;
         }
 
-        ShowCurrentSection();
-    }
-
-    private void ShowCurrentSection()
-    {
-        if (entryIndex < 0 || entryIndex >= entries.Length) return;
-
-        var entry = entries[entryIndex];
+        var entry = entries[index];
         var secs = GetSections(entry);
 
-        if (secs.Length == 0)
+        // Reset for new entry
+        sectionIndex = 0;
+        entryManuallySkipped = false;
+
+        // UI: speaker name now
+        if (playerNameText) playerNameText.text = entry.speakerName;
+
+        // Set first section's text immediately if its startTime == 0 (nice UX)
+        if (secs.Length > 0 && Mathf.Approximately(secs[0].startTime, 0f))
         {
-            // treat empty entry as instant start/complete, then end or advance
-            entry.onEntryStart?.Invoke();
-            entry.onEntryComplete?.Invoke();
-
-            entryIndex++;
-            sectionIndex = 0;
-
-            if (entryIndex >= entries.Length)
-            {
-                EndDialogue();
-                return;
-            }
-            entry = entries[entryIndex];
-            secs = GetSections(entry);
+            if (dialogueText) dialogueText.text = secs[0].text;
+            // We'll still invoke onSectionStart at t=0 from the coroutine below
+        }
+        else
+        {
+            // clear or keep previous? We'll clear to avoid flicker from old text
+            if (dialogueText) dialogueText.text = string.Empty;
         }
 
-        // Clamp section index
-        sectionIndex = Mathf.Clamp(sectionIndex, 0, secs.Length - 1);
-        var sec = secs[sectionIndex];
-
-        // Entry start event only when we hit section 0
-        if (sectionIndex == 0)
-            entry.onEntryStart?.Invoke();
-
-        // Update UI
-        if (playerNameText) playerNameText.text = entry.speakerName;
-        if (dialogueText) dialogueText.text = sec.text;
-
-        // Rebuild layout after text changed
-        if (sectionRoutine != null) StopCoroutine(sectionRoutine);
+        // Layout refresh for initial state
         StartCoroutine(Co_RebuildLayoutNextFrame());
 
-        // Prepare audio window
-        float clipLen = entry.audioClip ? entry.audioClip.length : 0f;
-        float start = Mathf.Max(0f, sec.startTime);
-        float end = ComputeSectionEnd(sec, secs, sectionIndex, clipLen);
-        float dur = Mathf.Max(0.01f, end - start);
-
+        // Start audio ONCE for this entry (no seeking for sections)
         if (audioSource != null)
         {
             audioSource.Stop();
             if (entry.audioClip != null)
             {
-                if (audioSource.clip != entry.audioClip)
-                    audioSource.clip = entry.audioClip;
-
-                float safeStart = clipLen > 0f ? Mathf.Min(start, Mathf.Max(0f, clipLen - 0.01f)) : 0f;
-                audioSource.time = safeStart;
+                audioSource.clip = entry.audioClip;
+                audioSource.time = 0f; // start from beginning
                 audioSource.Play();
             }
             else
@@ -236,15 +198,94 @@ public class DialoguePlayer : MonoBehaviour
             }
         }
 
-        if (nextButton != null) nextButton.interactable = true;
+        // Fire entry start
+        entry.onEntryStart?.Invoke();
 
-        // Section start event (after the text/audio are positioned)
-        sec.onSectionStart?.Invoke();
-
-        sectionRoutine = StartCoroutine(AutoAdvanceAfter(dur));
+        // Drive section timing & auto-advance
+        if (entryFlow != null) StopCoroutine(entryFlow);
+        entryFlow = StartCoroutine(EntryFlowCoroutine(entry));
     }
 
-    private float ComputeSectionEnd(Section current, Section[] all, int idx, float clipLen)
+    private IEnumerator EntryFlowCoroutine(DialogueEntry entry)
+    {
+        entryStartTime = Time.time;
+
+        var secs = GetSections(entry);
+        float clipLen = entry.audioClip ? entry.audioClip.length : -1f;
+
+        // Show each section at its startTime (relative to entry start)
+        for (int i = 0; i < secs.Length; i++)
+        {
+            var s = secs[i];
+
+            // Wait until this section's start time
+            yield return WaitUntilEntryElapsed(s.startTime);
+            if (entryManuallySkipped) yield break; // Next() pressed while waiting
+
+            // Start section
+            sectionIndex = i;
+            if (dialogueText) dialogueText.text = s.text;
+            StartCoroutine(Co_RebuildLayoutNextFrame());
+            s.onSectionStart?.Invoke();
+
+            // Determine when this section completes (for its onComplete)
+            float sectionEnd = ComputeSectionEndForDisplay(s, secs, i, clipLen);
+            float nowElapsed = Time.time - entryStartTime;
+            float remain = Mathf.Max(0f, sectionEnd - nowElapsed);
+
+            // Wait until the section display should complete (unless we hit manual skip)
+            if (remain > 0f)
+            {
+                yield return new WaitForSeconds(remain);
+                if (entryManuallySkipped) yield break;
+            }
+
+            s.onSectionComplete?.Invoke();
+        }
+
+        // After last section, wait until the entry end (clip length or fallback)
+        float entryEnd = ComputeEntryEndTime(entry, secs, clipLen);
+        float elapsed = Time.time - entryStartTime;
+        if (entryEnd > elapsed)
+        {
+            yield return new WaitForSeconds(entryEnd - elapsed);
+            if (entryManuallySkipped) yield break;
+        }
+
+        // Auto-complete entry
+        entry.onEntryComplete?.Invoke();
+        GoToNextEntry();
+    }
+
+    private void GoToNextEntry()
+    {
+        // Stop audio for cleanliness (optional)
+        if (audioSource != null)
+        {
+            audioSource.Stop();
+        }
+
+        entryIndex++;
+        if (entryIndex >= entries.Length)
+        {
+            EndDialogue();
+            return;
+        }
+
+        StartEntry(entryIndex);
+    }
+
+    // -------------------- Timing helpers --------------------
+
+    private IEnumerator WaitUntilEntryElapsed(float targetElapsed)
+    {
+        // Use Time.time relative to entry start so it's robust with/without audio
+        while ((Time.time - entryStartTime) < targetElapsed && !entryManuallySkipped)
+            yield return null;
+    }
+
+    // Section display end: if a duration is specified, use it; else next section start; else clip end; else fallback
+    private float ComputeSectionEndForDisplay(Section current, Section[] all, int idx, float clipLen)
     {
         if (current.duration > 0f)
             return current.startTime + current.duration;
@@ -257,36 +298,48 @@ public class DialoguePlayer : MonoBehaviour
         return current.startTime + Mathf.Max(0.01f, defaultTextOnlyDuration);
     }
 
+    // Entry end: prefer clip length; else last section's end; else default
+    private float ComputeEntryEndTime(DialogueEntry entry, Section[] secs, float clipLen)
+    {
+        if (clipLen > 0f) return clipLen;
+
+        if (secs.Length > 0)
+        {
+            var last = secs[secs.Length - 1];
+            return ComputeSectionEndForDisplay(last, secs, secs.Length - 1, clipLen);
+        }
+
+        // No sections: show fallback duration
+        return Mathf.Max(0.01f, defaultTextOnlyDuration);
+    }
+
     private Section[] GetSections(DialogueEntry entry)
     {
         if (entry.sections != null && entry.sections.Length > 0)
             return entry.sections;
 
-        if (string.IsNullOrWhiteSpace(entry.dialogueText))
-            return new Section[0];
-
-        float length = entry.audioClip ? entry.audioClip.length : Mathf.Max(0.01f, defaultTextOnlyDuration);
-        return new Section[]
+        if (!string.IsNullOrWhiteSpace(entry.dialogueText))
         {
-            new Section { text = entry.dialogueText, startTime = 0f, duration = length }
-        };
+            float length = entry.audioClip ? entry.audioClip.length : Mathf.Max(0.01f, defaultTextOnlyDuration);
+            return new Section[]
+            {
+                new Section { text = entry.dialogueText, startTime = 0f, duration = length }
+            };
+        }
+
+        return new Section[0];
     }
 
-    private IEnumerator AutoAdvanceAfter(float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-        if (!isRunning) yield break;
-        Next();
-    }
+    // -------------------- End & layout --------------------
 
     private void EndDialogue()
     {
         isRunning = false;
 
-        if (sectionRoutine != null)
+        if (entryFlow != null)
         {
-            StopCoroutine(sectionRoutine);
-            sectionRoutine = null;
+            StopCoroutine(entryFlow);
+            entryFlow = null;
         }
 
         if (audioSource != null)
@@ -295,7 +348,6 @@ public class DialoguePlayer : MonoBehaviour
             audioSource.clip = null;
         }
 
-        // fire global end AFTER last entry completed
         onEnd?.Invoke();
 
         if (hidePanelOnEnd && panel != null)
