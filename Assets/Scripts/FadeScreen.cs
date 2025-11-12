@@ -128,7 +128,7 @@ public class FadeScreen : MonoBehaviour
         FadeOut();
         yield return new WaitForSeconds(duration);
         fadeInSpace?.Invoke();
-        RenderSettings.skybox = spaceSkyBox;
+        //RenderSettings.skybox = spaceSkyBox;
         FadeIn();
     }
 
