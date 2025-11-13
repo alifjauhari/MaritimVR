@@ -37,7 +37,19 @@ public class FadeScreen : MonoBehaviour
         StartCoroutine(ChangeSceneRoutine(sceneName));
     }
 
+    public void ChangeSceneFast(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
     IEnumerator ChangeSceneRoutine(string sceneName)
+    {
+        SingleFadeOut();
+        yield return new WaitForSeconds(duration);
+        SceneManager.LoadScene(sceneName);
+    }
+
+    IEnumerator ChangeSceneFastRoutine(string sceneName)
     {
         SingleFadeOut();
         yield return new WaitForSeconds(duration);
