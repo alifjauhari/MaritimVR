@@ -26,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ScenesTerbaru/InfinitySeaTugboat.unity
     guid: 481d3ba6d1b5fd34ba7f53636e212471
+  - enabled: 1
+    path: Assets/ScenesTerbaru/InfinitySeaTopDeck.unity
+    guid: c9ecce466c3ff7c44b3261ceb6a38747
   - enabled: 0
     path: Assets/Samples/Meta XR Movement SDK/78.0.0/Advanced Samples/Scenes/MovementISDKLocomotion.unity
     guid: f218e4b84bfc26549a67cf06a00d10cd
