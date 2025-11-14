@@ -98,6 +98,13 @@ public class DialoguePlayer : MonoBehaviour
         }
     }
 
+    public void SetRunning()
+    {
+        isRunning = false;
+        entryIndex = 0;
+        sectionIndex = 0;
+    }
+
     IEnumerator DelayOnStart(float delay)
     {
         yield return new WaitForSeconds(delay);
