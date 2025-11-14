@@ -18525,7 +18525,7 @@ MonoBehaviour:
   spaceSkyBox: {fileID: 0}
   centerEye: {fileID: 1571205100}
   skyBox: 0
-  fadeonStart: 0
+  fadeonStart: 1
   duration: 2
   fadeColor: {r: 0, g: 0, b: 0, a: 0}
   fadeInSpace:

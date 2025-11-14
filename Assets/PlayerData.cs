@@ -32,4 +32,10 @@ public class PlayerData : MonoBehaviour
         isLoungeRoom = true;
         isTugboat = false;
     }
+
+    public void ResetData()
+    {
+        isLoungeRoom = false;
+        isTugboat = false;
+    }
 }
