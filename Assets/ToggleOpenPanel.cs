@@ -1,4 +1,6 @@
+using Oculus.Platform;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ToggleOpenPanel : MonoBehaviour
 {
@@ -6,6 +8,9 @@ public class ToggleOpenPanel : MonoBehaviour
     public string openPanelName;
     public string closePanelName;
     public Animator animator;
+
+    public UnityEvent openPanel;
+    public UnityEvent closePanel;
 
     public void OpenClosePanel()
     {
@@ -17,6 +22,20 @@ public class ToggleOpenPanel : MonoBehaviour
         else
         {
             animator.SetTrigger(closePanelName);
+            toggleOpenPanel = true;
+        }
+    }
+
+    public void OpenClosePanelEvent()
+    {
+        if (toggleOpenPanel)
+        {
+            openPanel?.Invoke();
+            toggleOpenPanel = false;
+        }
+        else
+        {
+            closePanel?.Invoke();
             toggleOpenPanel = true;
         }
     }
