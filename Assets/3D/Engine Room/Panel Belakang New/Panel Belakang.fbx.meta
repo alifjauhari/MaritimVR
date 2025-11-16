@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: ff83ec2b075cd1d4ba9e47f1178dd11b
+guid: 78e95729fdd168a4eb78cda3bf674bf4
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
   externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Blue
+    second: {fileID: 2100000, guid: 6a86aa5951d967b4e90278be8f814b02, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -12,23 +17,23 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Default
+    second: {fileID: 2100000, guid: 034d8e4bc3ba8ef45a344be24aa4c890, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Hz_meter
     second: {fileID: 2100000, guid: 56956f0436229df4bbec040319ed135a, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: _0020_Red
-    second: {fileID: 2100000, guid: f422fcfa2a9329941bf966a90347fca3, type: 2}
+      name: Red
+    second: {fileID: 2100000, guid: 56c63853ac9897b4d981cc7a6531325e, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: _0056_Yellow
-    second: {fileID: 2100000, guid: edc18335d40737547b2a565df9e9c2b2, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: _0103_Blue
-    second: {fileID: 2100000, guid: 0ac5ba2222fecfb42b440df9e5c245fa, type: 2}
+      name: Yellow
+    second: {fileID: 2100000, guid: dea940aa381f6a74eb0c8e06b7760cc7, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -52,13 +57,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: kw_meter
-    second: {fileID: 2100000, guid: 7909bb5869e97c74a91d51819cde4b3e, type: 2}
+      name: edge_color245245245255
+    second: {fileID: 2100000, guid: ee5d1ff704fb4a942836a1857f76aca4, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: material
-    second: {fileID: 2100000, guid: 977c1f050ffd24845bcd7f2f0d7f30b3, type: 2}
+      name: kw_meter
+    second: {fileID: 2100000, guid: 7909bb5869e97c74a91d51819cde4b3e, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
