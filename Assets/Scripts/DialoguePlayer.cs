@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -68,6 +68,13 @@ public class DialoguePlayer : MonoBehaviour
     [Tooltip("Fallbacks when there is no audio.")]
     [SerializeField] private float defaultTextOnlyDuration = 3f;
 
+    // VR Input Hold Logic
+    [SerializeField] private float holdToEndTime = 2f;
+
+    private bool isHoldingB = false;
+    private float holdStartTime = 0f;
+    private bool forceEndedByHold = false;
+
     private AudioSource audioSource;
     private int entryIndex = 0;
     private int sectionIndex = 0;           // current section inside the entry (for events)
@@ -95,6 +102,59 @@ public class DialoguePlayer : MonoBehaviour
             entryIndex = 0;
             sectionIndex = 0;
             StartCoroutine(DelayOnStart(2f));
+        }
+    }
+
+    private void Update()
+    {
+        if (!isRunning) return;
+
+        // Button B (Right Controller - secondary button)
+        bool bPressed = UnityEngine.XR.InputDevices
+            .GetDeviceAtXRNode(UnityEngine.XR.XRNode.RightHand)
+            .TryGetFeatureValue(UnityEngine.XR.CommonUsages.secondaryButton, out bool value) && value;
+
+        // ---- On Press (start hold)
+        if (bPressed && !isHoldingB)
+        {
+            isHoldingB = true;
+            holdStartTime = Time.time;
+            forceEndedByHold = false;
+
+            Debug.Log("[VR INPUT] Button B PRESSED - start holding");
+        }
+
+        // ---- While Holding
+        if (isHoldingB && bPressed)
+        {
+            float heldTime = Time.time - holdStartTime;
+            Debug.Log($"[VR INPUT] Holding B: {heldTime:F2}s");
+
+            // If held long enough → force end immediately
+            if (heldTime >= holdToEndTime && !forceEndedByHold)
+            {
+                forceEndedByHold = true;
+                Debug.Log("[VR INPUT] HOLD >= 2s → END DIALOGUE");
+
+                EndDialogue();   // directly end and trigger onEnd
+            }
+        }
+
+        // ---- On Release
+        if (!bPressed && isHoldingB)
+        {
+            isHoldingB = false;
+
+            float totalHeld = Time.time - holdStartTime;
+
+            Debug.Log($"[VR INPUT] Button B RELEASED after {totalHeld:F2}s");
+
+            // If NOT forced end by long hold → treat as Next
+            if (!forceEndedByHold)
+            {
+                Debug.Log("[VR INPUT] SHORT PRESS → NEXT ENTRY");
+                NextSection();
+            }
         }
     }
 
@@ -215,53 +275,89 @@ public class DialoguePlayer : MonoBehaviour
 
     private IEnumerator EntryFlowCoroutine(DialogueEntry entry)
     {
-        entryStartTime = Time.time;
-
         var secs = GetSections(entry);
         float clipLen = entry.audioClip ? entry.audioClip.length : -1f;
 
-        // Show each section at its startTime (relative to entry start)
-        for (int i = 0; i < secs.Length; i++)
+        entryStartTime = Time.time;
+
+        for (int i = sectionIndex; i < secs.Length; i++)
         {
             var s = secs[i];
 
-            // Wait until this section's start time
-            yield return WaitUntilEntryElapsed(s.startTime);
-            if (entryManuallySkipped) yield break; // Next() pressed while waiting
-
-            // Start section
+            // Start section immediately (no waiting)
             sectionIndex = i;
-            if (dialogueText) dialogueText.text = s.text;
+
+            if (dialogueText)
+                dialogueText.text = s.text;
+
+            // Sync audio to this section
+            if (audioSource != null && audioSource.clip != null)
+            {
+                audioSource.time = Mathf.Clamp(s.startTime, 0f, audioSource.clip.length);
+                if (!audioSource.isPlaying)
+                    audioSource.Play();
+            }
+
             StartCoroutine(Co_RebuildLayoutNextFrame());
             s.onSectionStart?.Invoke();
 
-            // Determine when this section completes (for its onComplete)
+            // Determine section end
             float sectionEnd = ComputeSectionEndForDisplay(s, secs, i, clipLen);
-            float nowElapsed = Time.time - entryStartTime;
-            float remain = Mathf.Max(0f, sectionEnd - nowElapsed);
+            float sectionDuration = sectionEnd - s.startTime;
 
-            // Wait until the section display should complete (unless we hit manual skip)
-            if (remain > 0f)
+            float t = 0f;
+            while (t < sectionDuration && !entryManuallySkipped)
             {
-                yield return new WaitForSeconds(remain);
-                if (entryManuallySkipped) yield break;
+                t += Time.deltaTime;
+
+                // prevent audio bleeding into next section
+                if (audioSource != null && audioSource.isPlaying)
+                {
+                    if (audioSource.time >= sectionEnd)
+                        audioSource.Pause();
+                }
+
+                yield return null;
             }
+
+            if (entryManuallySkipped) yield break;
 
             s.onSectionComplete?.Invoke();
         }
 
-        // After last section, wait until the entry end (clip length or fallback)
-        float entryEnd = ComputeEntryEndTime(entry, secs, clipLen);
-        float elapsed = Time.time - entryStartTime;
-        if (entryEnd > elapsed)
-        {
-            yield return new WaitForSeconds(entryEnd - elapsed);
-            if (entryManuallySkipped) yield break;
-        }
-
-        // Auto-complete entry
+        // Entry finished
         entry.onEntryComplete?.Invoke();
         GoToNextEntry();
+    }
+
+
+    public void NextSection()
+    {
+        if (!isRunning) return;
+
+        var entry = entries[entryIndex];
+        var secs = GetSections(entry);
+
+        if (sectionIndex + 1 >= secs.Length)
+        {
+            Debug.Log("[DIALOGUE] Last section → Next Entry");
+            Next();
+            return;
+        }
+
+        Debug.Log("[DIALOGUE] Force NEXT SECTION");
+
+        entryManuallySkipped = true;
+
+        if (entryFlow != null)
+            StopCoroutine(entryFlow);
+
+        secs[sectionIndex].onSectionComplete?.Invoke();
+
+        sectionIndex++;
+
+        entryManuallySkipped = false;
+        entryFlow = StartCoroutine(EntryFlowCoroutine(entry));
     }
 
     private void GoToNextEntry()
