@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: TransTRACK
-  productName: TransTRACK-VR
+  productName: TransTRACK-VR Walkthrough
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -140,7 +140,7 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 1.1
+  bundleVersion: 2.0
   preloadedAssets:
   - {fileID: 11400000, guid: de08bed7548e4e6459d4cbac041bb4c8, type: 2}
   - {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7, type: 2}
@@ -165,7 +165,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.4
   androidMinAspectRatio: 1
   applicationIdentifier:
-    Android: com.TransTRACK.VRSimulatorTransTRACK
+    Android: com.TransTRACK.TransTRACKVRWalkthrough
     Standalone: com.UnityTechnologies.VikingVillage
     iPhone: com.Company.ProductName
     tvOS: com.Company.ProductName
